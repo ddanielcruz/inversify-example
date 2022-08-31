@@ -1,22 +1,24 @@
-import { inject, injectable } from 'inversify'
+import { inject } from 'inversify'
+import { provide } from 'inversify-binding-decorators'
+
 import { ThrowableWeapon, Warrior, Weapon } from './interfaces'
 import { TYPES } from './types'
 
-@injectable()
+@provide(TYPES.Weapon)
 export class Katana implements Weapon {
   public hit() {
     return 'cut!'
   }
 }
 
-@injectable()
+@provide(TYPES.ThrowableWeapon)
 export class Shuriken implements ThrowableWeapon {
   public throw() {
     return 'hit!'
   }
 }
 
-@injectable()
+@provide(TYPES.Warrior)
 export class Ninja implements Warrior {
   constructor(
     @inject(TYPES.Weapon) private readonly katana: Weapon,

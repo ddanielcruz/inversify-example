@@ -1,17 +1,19 @@
-import { inject, injectable } from 'inversify'
+import { injectable } from 'inversify'
+import { provide } from 'inversify-binding-decorators'
 
 @injectable()
 export abstract class IService {
   abstract process(): void
 }
 
+@provide(IService)
 export class Service extends IService {
   process(): void {
     console.log('Processing...')
   }
 }
 
-@injectable()
+@provide(Business)
 export class Business {
-  constructor(@inject(IService) public service: IService) {}
+  constructor(public service: IService) {}
 }

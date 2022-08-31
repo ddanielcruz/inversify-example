@@ -1,9 +1,9 @@
 import 'reflect-metadata'
 
 import { container } from './inversify.config'
+import { Business } from './abstract'
 import { Warrior } from './interfaces'
 import { TYPES } from './types'
-import { Business } from './abstract'
 
 const ninja: Warrior = container.get(TYPES.Warrior)
 console.log(ninja.fight())
